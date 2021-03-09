@@ -142,7 +142,6 @@ Function pipecom& (cmd As String, stdout As String, stderr As String)
         Function feof& (ByVal stream As _Offset)
         Function fgets$ (str As String, Byval n As Long, Byval stream As _Offset)
         Function pclose& (ByVal stream As _Offset)
-        Function fclose& (ByVal stream As _Offset)
         End Declare
 
         Declare Library
