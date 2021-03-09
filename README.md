@@ -1,5 +1,6 @@
 # Pipecom
 Pipecom - Use pipes and stdhandles to read back console output! No more temp files!
+Compatible with Windows (32 & 64 bit), Mac, and Linux
 
 Basic usage for returning back console output as a string only:
 ```vb
