@@ -44,15 +44,15 @@ $If PIPECOM = UNDEFINED Then
             Const WAIT_FAILED = &HFFFFFFFF
 
             Declare CustomType Library
-                Function CreatePipe%% (ByVal hReadPipe As _Offset, Byval hWritePipe As _Offset, Byval lpPipeAttributes As _Offset, Byval nSize As Long)
-                Function CreateProcess%% Alias "CreateProcessA" (ByVal lpApplicationName As _Offset, Byval lpCommandLine As _Offset, Byval lpProcessAttributes As _Offset, Byval lpThreadAttributes As _Offset, Byval bInheritHandles As Integer, Byval dwCreationFlags As Long, Byval lpEnvironment As _Offset, Byval lpCurrentDirectory As _Offset, Byval lpStartupInfor As _Offset, Byval lpProcessInformation As _Offset)
-                Function GetExitCodeProcess%% (ByVal hProcess As _Offset, Byval lpExitCode As _Offset)
+                Function CreatePipe& (ByVal hReadPipe As _Offset, Byval hWritePipe As _Offset, Byval lpPipeAttributes As _Offset, Byval nSize As Long)
+                Function CreateProcess& (ByVal lpApplicationName As _Offset, Byval lpCommandLine As _Offset, Byval lpProcessAttributes As _Offset, Byval lpThreadAttributes As _Offset, Byval bInheritHandles As Integer, Byval dwCreationFlags As Long, Byval lpEnvironment As _Offset, Byval lpCurrentDirectory As _Offset, Byval lpStartupInfor As _Offset, Byval lpProcessInformation As _Offset)
+                Function GetExitCodeProcess& (ByVal hProcess As _Offset, Byval lpExitCode As _Offset)
                 Sub HandleClose Alias "CloseHandle" (ByVal hObject As _Offset)
-                Function ReadFile%% (ByVal hFile As _Offset, Byval lpBuffer As _Offset, Byval nNumberOfBytesToRead As Long, Byval lpNumberOfBytesRead As _Offset, Byval lpOverlapped As _Offset)
+                Function ReadFile& (ByVal hFile As _Offset, Byval lpBuffer As _Offset, Byval nNumberOfBytesToRead As Long, Byval lpNumberOfBytesRead As _Offset, Byval lpOverlapped As _Offset)
                 Function WaitForSingleObject& (ByVal hHandle As _Offset, Byval dwMilliseconds As Long)
             End Declare
 
-            Dim As _Byte ok: ok = 1
+            Dim As Long ok: ok = 1
             Dim As _Offset hStdOutPipeRead, hStdOutPipeWrite, hStdReadPipeError, hStdOutPipeError
             Dim As SECURITY_ATTRIBUTES sa: sa.nLength = Len(sa): sa.lpSecurityDescriptor = 0: sa.bInheritHandle = 1
 
@@ -143,6 +143,7 @@ $If PIPECOM = UNDEFINED Then
             Function WEXITSTATUS& (ByVal stat_val As Long)
             End Declare
 
+            Dim As String pipecom_buffer
             Dim As _Offset stream
 
             Dim buffer As String * 4096
