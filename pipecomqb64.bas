@@ -143,7 +143,6 @@ $If PIPECOM = UNDEFINED Then
             Function WEXITSTATUS& (ByVal stat_val As Long)
             End Declare
 
-            Dim As String pipecom_buffer
             Dim As _Offset stream
 
             Dim buffer As String * 4096
